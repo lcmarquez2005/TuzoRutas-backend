@@ -1,0 +1,36 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directorio de dependencias
+node_modules/
+
+# Archivos de compilación de TypeScript
+dist/
+build/
+
+# Variables de Entorno y Secretos (¡Nunca subir a GitHub!)
+.env
+.env.local
+
+# Archivos temporales o de pruebas del Agente/Desarrollador
+update_pass.js
+.gemini/
+
+# Archivos de OS
+.DS_Store
+Thumbs.db
