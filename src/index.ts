@@ -29,15 +29,15 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/rutas', rutasRouter);
 
-// Iniciar la escucha del servidor localmente solo si no estamos en Vercel
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`====================================================`);
-    console.log(`🚀 SERVIDOR TUZORUTAS INICIADO`);
-    console.log(`📡 URL local: http://localhost:${PORT}`);
-    console.log(`====================================================`);
-  });
-}
+// Iniciar la escucha del servidor
+// En Render/Docker necesitamos que el servidor escuche activamente.
+// Vercel maneja la escucha de forma interna mediante la exportación del app.
+app.listen(PORT, () => {
+  console.log(`====================================================`);
+  console.log(`🚀 SERVIDOR TUZORUTAS INICIADO`);
+  console.log(`📡 Puerto: ${PORT}`);
+  console.log(`====================================================`);
+});
 
-// Es obligatorio exportar la aplicación para que Vercel pueda procesarla
+// Es obligatorio exportar la aplicación para que Vercel pueda procesarla si se usa esa plataforma
 export default app;
