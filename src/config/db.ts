@@ -6,14 +6,25 @@ dotenv.config();
 
 const { Pool } = pg;
 
-// Crear un pool de conexiones con PostgreSQL utilizando las variables de entorno
-const pool = new Pool({
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  database: process.env.DB_NAME || 'tuzorutas',
-});
+// Crear un pool de conexiones con PostgreSQL
+// Si existe POSTGRES_URL o DATABASE_URL (Vercel/Neon Postgres), lo priorizamos, si no, usamos variables locales
+const connectionString = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+
+const poolConfig = connectionString 
+  ? { 
+      connectionString: connectionString,
+      // Vercel Postgres requiere SSL activado
+      ssl: { rejectUnauthorized: false } 
+    }
+  : {
+      user: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASSWORD || 'postgres',
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '5432'),
+      database: process.env.DB_NAME || 'tuzorutas',
+    };
+
+const pool = new Pool(poolConfig);
 
 // Comprobar la conexión al iniciar el backend
 pool.query('SELECT NOW()', (err, res) => {
