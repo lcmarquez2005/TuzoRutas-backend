@@ -124,8 +124,9 @@ export const crearRuta = async (req: Request, res: Response): Promise<void> => {
     // Insertamos secuencialmente manteniendo el índice de orden
     for (let i = 0; i < trayectoria.length; i++) {
       const coord = trayectoria[i];
-      if (coord.lat === undefined || coord.lng === undefined) {
-        throw new Error(`Coordenada en índice ${i} es inválida. Debe tener lat y lng.`);
+      // Verificamos que lat y lng no sean ni undefined ni null
+      if (coord.lat == null || coord.lng == null) {
+        throw new Error(`Coordenada en índice ${i} es inválida. Debe tener lat y lng (recibido: lat=${coord.lat}, lng=${coord.lng}).`);
       }
       await client.query(insertarCoordenadaSql, [nuevaRutaId, coord.lat, coord.lng, i + 1]);
     }
@@ -138,8 +139,9 @@ export const crearRuta = async (req: Request, res: Response): Promise<void> => {
       `;
       for (let j = 0; j < paradas.length; j++) {
         const parada = paradas[j];
-        if (!parada.nombre || parada.lat === undefined || parada.lng === undefined) {
-          throw new Error(`Parada en índice ${j} es inválida. Debe tener nombre, lat y lng.`);
+        // Verificamos que nombre, lat y lng no sean ni undefined ni null
+        if (!parada.nombre || parada.lat == null || parada.lng == null) {
+          throw new Error(`Parada en índice ${j} es inválida. Debe tener nombre, lat y lng (recibido: nombre=${parada.nombre}, lat=${parada.lat}, lng=${parada.lng}).`);
         }
         await client.query(insertarParadaSql, [
           nuevaRutaId, 

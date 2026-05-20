@@ -4,10 +4,10 @@
 -- Puedes ejecutar este archivo en tu cliente SQL favorito (ej: pgAdmin, DBeaver)
 -- para inicializar las tablas necesarias de PostgreSQL.
 
--- OPCIONAL (Recomendado para producción futura):
--- Si deseas activar las capacidades geográficas avanzadas en PostgreSQL,
--- puedes habilitar la extensión PostGIS ejecutando la siguiente línea (requiere permisos de superusuario):
--- CREATE EXTENSION IF NOT EXISTS postgis;
+-- --------------------------------------------------------------------
+-- 0. HABILITAR POSTGIS (REQUERIDO PARA BÚSQUEDA ESPACIAL)
+-- --------------------------------------------------------------------
+CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- --------------------------------------------------------------------
 -- 1. CREACIÓN DE LA TABLA DE RUTAS (Cabecera)

@@ -20,3 +20,13 @@ VALUES (
     '$2b$10$wT0/K0fKkX1g.U/3bOa8K.2wL4uG8W5H8wH0n9H3E4D6U9V8n5O7m', 
     'chofer'
 ) ON CONFLICT (usuario) DO NOTHING;
+
+-- Insertamos al usuario root con contraseña "root" y rol "admin"
+-- Generado con: bcrypt.hashSync('root', 10)
+INSERT INTO usuarios (usuario, password_hash, rol)
+VALUES (
+    'root',
+    '$2b$10$mPiG.nSLTUh9alyneLimReABZ5BFKO4AWWM0TxKXHGH.u0.8h0gPi',
+    'admin'
+) ON CONFLICT (usuario) DO NOTHING;
+

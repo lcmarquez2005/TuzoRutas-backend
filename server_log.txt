@@ -1,0 +1,11 @@
+
+> tuzorutas-backend@1.0.0 dev
+> tsx watch src/index.ts
+
+(node:4500) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+====================================================
+🚀 SERVIDOR TUZORUTAS INICIADO
+📡 Puerto: 3000
+====================================================
+✅ Conexión establecida correctamente con PostgreSQL.

@@ -22,6 +22,10 @@ const poolConfig = connectionString
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT || '5432'),
       database: process.env.DB_NAME || 'tuzorutas',
+      // Activar SSL si el host es remoto (no localhost)
+      ...(process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
+        ? { ssl: { rejectUnauthorized: false } }
+        : {}),
     };
 
 const pool = new Pool(poolConfig);

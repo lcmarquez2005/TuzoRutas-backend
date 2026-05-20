@@ -32,7 +32,7 @@ app.use('/api/rutas', rutasRouter);
 // Iniciar la escucha del servidor
 // En Render/Docker necesitamos que el servidor escuche activamente.
 // Vercel maneja la escucha de forma interna mediante la exportación del app.
-app.listen(PORT, () => {
+app.listen(PORT as number, '0.0.0.0', () => {
   console.log(`====================================================`);
   console.log(`🚀 SERVIDOR TUZORUTAS INICIADO`);
   console.log(`📡 Puerto: ${PORT}`);
